@@ -7,6 +7,13 @@
 
 Optional property for [kjson](https://github.com/pwall567/kjson-core).
 
+## IMPORTANT NOTE
+
+There is a
+[bug](https://youtrack.jetbrains.com/issue/KT-57357/Reflection-KotlinReflectionInternalError-when-using-callBy-on-constructor-that-has-inline-class-parameter-with-nullable-value)
+in the Kotlin reflection subsystem that prevents this library working as intended.
+The project is therefore on hold until that issue is resolved.
+
 ## Background
 
 When deserializing JSON objects, the [kjson](https://github.com/pwall567/kjson-core) library will use the default value
@@ -14,8 +21,9 @@ in the constructor for any missing properties.
 The convention is to use `null` as this default, but this makes it difficult to distinguish between a missing property
 and one that has been set intentionally to `null`.
 
-This library provides an `Opt` class which, when used in conjunction with the appropriate deserialization functions,
-will provide the ability to determine whether a property was omitted or was supplied with the value `null`.
+The `kjson-optional` library provides an `Opt` class which, when used in conjunction with the appropriate
+deserialization functions, will provide the ability to determine whether a property was omitted or was supplied with the
+value `null`.
 
 ## Quick Start
 
@@ -41,13 +49,21 @@ Then, to access the `middleName`:
     }
 ```
 
+## Value Class
+
+`Opt` is a value class, which means that in many cases the compiler will optimise away the instantiation of a separate
+"holder" class.
+The use of `Opt` will incur some overhead compared to the use of a raw type, but when used as described above, it will
+not lead to the creation of a large number of small objects, with the associated garbage collection cost.
+
 ## Naming
 
 The name `Opt` was chosen because a single data class is likely to contain several optional fields, and a long name
 would be very obtrusive.
 The package name `io.kjson.optional` provides a bit more explanation of the function of the class.
 
-The `java.lang.Optional` class was considered for this use but ruled out because it does not allow null values.
+The `java.lang.Optional` class was considered for this use but ruled out because it does not allow null values, and
+because it would not allow the use of a value class.
 
 ## Reference
 
@@ -84,6 +100,7 @@ To test whether the value is set:
 ```kotlin
     if (optString.isSet) {
         // use optString.value
+        println(optString.value)
     }
 ```
 
@@ -91,6 +108,7 @@ To test if the value is unset:
 ```kotlin
     if (optString.isUnset) {
         // do NOT use optString.value
+        println("Value is not set")
     }
 ```
 
@@ -138,4 +156,4 @@ The latest version of the library is 1.0, and it may be obtained from the Maven 
 
 Peter Wall
 
-2023-02-23
+2023-03-19

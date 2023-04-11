@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/pwall567/kjson-optional.svg?branch=main)](https://app.travis-ci.com/github/pwall567/kjson-optional)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Kotlin](https://img.shields.io/static/v1?label=Kotlin&message=v1.6.10&color=7f52ff&logo=kotlin&logoColor=7f52ff)](https://github.com/JetBrains/kotlin/releases/tag/v1.6.10)
+[![Kotlin](https://img.shields.io/static/v1?label=Kotlin&message=v1.7.21&color=7f52ff&logo=kotlin&logoColor=7f52ff)](https://github.com/JetBrains/kotlin/releases/tag/v1.7.21)
 [![Maven Central](https://img.shields.io/maven-central/v/io.kjson/kjson-optional?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.kjson%22%20AND%20a:%kjson-optional%22)
 
 Optional property for [kjson](https://github.com/pwall567/kjson-core).
@@ -11,8 +11,11 @@ Optional property for [kjson](https://github.com/pwall567/kjson-core).
 
 There is a
 [bug](https://youtrack.jetbrains.com/issue/KT-57357/Reflection-KotlinReflectionInternalError-when-using-callBy-on-constructor-that-has-inline-class-parameter-with-nullable-value)
-in the Kotlin reflection subsystem that prevents this library working as intended.
-The project is therefore on hold until that issue is resolved.
+in the Kotlin reflection subsystem relating to value classes that prevents this library working as intended.
+
+The current version (1.1) uses a regular class instead of a [value class](#value-class), and will therefore not be as
+efficient as planned.
+A new version using a value class will be released as soon as the issue is resolved.
 
 ## Background
 
@@ -135,25 +138,25 @@ The lambda will be executed only if the value is set, and the value will be pass
 
 ## Dependency Specification
 
-The latest version of the library is 1.0, and it may be obtained from the Maven Central repository.
+The latest version of the library is 1.1, and it may be obtained from the Maven Central repository.
 
 ### Maven
 ```xml
     <dependency>
       <groupId>io.kjson</groupId>
       <artifactId>kjson-optional</artifactId>
-      <version>1.0</version>
+      <version>1.1</version>
     </dependency>
 ```
 ### Gradle
 ```groovy
-    implementation "io.kjson:kjson-optional:1.0"
+    implementation "io.kjson:kjson-optional:1.1"
 ```
 ### Gradle (kts)
 ```kotlin
-    implementation("io.kjson:kjson-optional:1.0")
+    implementation("io.kjson:kjson-optional:1.1")
 ```
 
 Peter Wall
 
-2023-03-19
+2023-04-11

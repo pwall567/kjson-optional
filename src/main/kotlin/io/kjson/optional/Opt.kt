@@ -30,8 +30,7 @@ package io.kjson.optional
  *
  * @author  Peter Wall
  */
-@JvmInline
-value class Opt<T> internal constructor(private val content: Any?) {
+class Opt<T> internal constructor(private val content: Any?) {
 
     val isSet: Boolean
         get() = content !== Unset

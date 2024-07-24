@@ -57,6 +57,10 @@ class Opt<T> internal constructor(private val content: Any?) {
 
     override fun toString(): String = "Opt($content)"
 
+    override fun equals(other: Any?): Boolean = this === other || other is Opt<*> && content == other.content
+
+    override fun hashCode(): Int = content.hashCode()
+
     internal object Unset {
 
         override fun toString(): String = "UNSET"

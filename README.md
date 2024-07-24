@@ -1,11 +1,11 @@
 # kjson-optional
 
-[![Build Status](https://travis-ci.com/pwall567/kjson-optional.svg?branch=main)](https://app.travis-ci.com/github/pwall567/kjson-optional)
+[![Build Status](https://github.com/pwall567/kjson-optional/actions/workflows/build.yml/badge.svg)](https://github.com/pwall567/kjson-optional/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Kotlin](https://img.shields.io/static/v1?label=Kotlin&message=v1.7.21&color=7f52ff&logo=kotlin&logoColor=7f52ff)](https://github.com/JetBrains/kotlin/releases/tag/v1.7.21)
+[![Kotlin](https://img.shields.io/static/v1?label=Kotlin&message=v1.9.24&color=7f52ff&logo=kotlin&logoColor=7f52ff)](https://github.com/JetBrains/kotlin/releases/tag/v1.9.24)
 [![Maven Central](https://img.shields.io/maven-central/v/io.kjson/kjson-optional?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.kjson%22%20AND%20a:%kjson-optional%22)
 
-Optional property for [kjson](https://github.com/pwall567/kjson-core).
+Optional property for [kjson](https://github.com/pwall567/kjson).
 
 ## IMPORTANT NOTE
 
@@ -13,14 +13,14 @@ There is a
 [bug](https://youtrack.jetbrains.com/issue/KT-57357/Reflection-KotlinReflectionInternalError-when-using-callBy-on-constructor-that-has-inline-class-parameter-with-nullable-value)
 in the Kotlin reflection subsystem relating to value classes that prevents this library working as intended.
 
-The current version (1.1) uses a regular class instead of a [value class](#value-class), and will therefore not be as
+The current version (1.2) uses a regular class instead of a [value class](#value-class), and will therefore not be as
 efficient as planned.
 A new version using a value class will be released as soon as the issue is resolved.
 
 ## Background
 
-When deserializing JSON objects, the [kjson](https://github.com/pwall567/kjson-core) library will use the default value
-in the constructor for any missing properties.
+When deserializing JSON objects, the [kjson](https://github.com/pwall567/kjson) library will use the default value in
+the constructor for any missing properties.
 The convention is to use `null` as this default, but this makes it difficult to distinguish between a missing property
 and one that has been set intentionally to `null`.
 
@@ -138,25 +138,25 @@ The lambda will be executed only if the value is set, and the value will be pass
 
 ## Dependency Specification
 
-The latest version of the library is 1.1, and it may be obtained from the Maven Central repository.
+The latest version of the library is 1.2, and it may be obtained from the Maven Central repository.
 
 ### Maven
 ```xml
     <dependency>
       <groupId>io.kjson</groupId>
       <artifactId>kjson-optional</artifactId>
-      <version>1.1</version>
+      <version>1.2</version>
     </dependency>
 ```
 ### Gradle
 ```groovy
-    implementation "io.kjson:kjson-optional:1.1"
+    implementation "io.kjson:kjson-optional:1.2"
 ```
 ### Gradle (kts)
 ```kotlin
-    implementation("io.kjson:kjson-optional:1.1")
+    implementation("io.kjson:kjson-optional:1.2")
 ```
 
 Peter Wall
 
-2023-04-11
+2024-07-22

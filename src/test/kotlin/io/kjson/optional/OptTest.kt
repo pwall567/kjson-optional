@@ -2,7 +2,7 @@
  * @(#) OptTest.kt
  *
  * kjson-optional  Optional property for JSON object
- * Copyright (c) 2023 Peter Wall
+ * Copyright (c) 2023, 2024 Peter Wall
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,10 @@
 package io.kjson.optional
 
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlin.test.expect
@@ -134,6 +136,28 @@ class OptTest {
     @Test fun `should convert unset value using toString`() {
         val opt = Opt.unset<Int>()
         expect("Opt(UNSET)") { opt.toString() }
+    }
+
+    @Test fun `should perform equality check correctly`() {
+        val opt1 = Opt.of(123)
+        val opt2 = Opt.of(123)
+        assertEquals(opt1, opt2)
+        assertEquals(opt2, opt1)
+        val opt3 = Opt.of(456)
+        assertNotEquals(opt1, opt3)
+        val opt4 = Opt.unset<Int>()
+        assertNotEquals(opt4, opt1)
+        val opt5 = Opt.unset<Int>()
+        assertEquals(opt4, opt5)
+    }
+
+    @Test fun `should create hashCode consistent with equality`() {
+        val opt1 = Opt.of(123)
+        val opt2 = Opt.of(123)
+        assertEquals(opt1.hashCode(), opt2.hashCode())
+        val opt4 = Opt.unset<Int>()
+        val opt5 = Opt.unset<Int>()
+        assertEquals(opt4.hashCode(), opt5.hashCode())
     }
 
 }

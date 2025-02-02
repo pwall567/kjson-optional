@@ -61,7 +61,7 @@ class Opt<T> internal constructor(private val content: Any?) {
 
     override fun hashCode(): Int = content.hashCode()
 
-    internal object Unset {
+    internal object Unset { // TODO - consider making this a data object (would mean the output changes to "Unset")
 
         override fun toString(): String = "UNSET"
 
